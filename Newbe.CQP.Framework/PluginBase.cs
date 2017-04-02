@@ -2,6 +2,13 @@
 {
     public abstract class PluginBase
     {
+        protected CoolQApi CoolQApi;
+
+        protected PluginBase()
+        {
+            CoolQApi = PluginHelper.CQ;
+        }
+
         /// <summary>
         /// AppID
         /// </summary>
@@ -16,22 +23,19 @@
         /// 此函数会在插件被开启时发生。
         /// </summary>
         /// <returns> 返回处理过程是否成功的值。</returns>
-        public abstract int Enabled();
+        public virtual int Enabled() => 0;
 
         /// <summary>
         /// 此函数会在插件被禁用时发生。
         /// </summary>
         /// <returns> 返回处理过程是否成功的值。</returns>
-        public abstract int Disabled();
+        public virtual int Disabled() => 0;
 
         /// <summary>
         /// 向酷Q提供插件信息。
         /// </summary>
         /// <returns>一个固定格式字符串。</returns>
-        public string AppInfo()
-        {
-            return (ApiVersion + "," + AppId).ToLower();
-        }
+        public string AppInfo() => (ApiVersion + "," + AppId).ToLower();
 
         /// <summary>
         /// 获取此插件的AuthCode。
@@ -45,6 +49,8 @@
             return 0;
             //固定返回0
         }
+
+        protected virtual int Initialize() => 0;
 
         /// <summary>
         /// 此函数会在酷Q退出时被调用。
@@ -65,7 +71,7 @@
         /// <param name="msg">消息的内容。</param>
         /// <param name="font">消息所使用的字体。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessPrivateMessage(int subType, int sendTime, long fromQQ, string msg, int font);
+        public virtual int ProcessPrivateMessage(int subType, int sendTime, long fromQQ, string msg, int font) => 0;
 
 
         /// <summary>
@@ -79,9 +85,9 @@
         /// <param name="msg">消息内容。</param>
         /// <param name="font">消息所使用字体。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessGroupMessage(int subType, int sendTime, long fromGroup, long fromQQ,
+        public virtual int ProcessGroupMessage(int subType, int sendTime, long fromGroup, long fromQQ,
             string fromAnonymous,
-            string msg, int font);
+            string msg, int font) => 0;
 
         /// <summary>
         /// 处理讨论组消息。
@@ -93,9 +99,9 @@
         /// <param name="msg">消息内容。</param>
         /// <param name="font">消息所使用字体。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessDiscussGroupMessage(int subType, int sendTime, long fromDiscuss, long fromQQ,
+        public virtual int ProcessDiscussGroupMessage(int subType, int sendTime, long fromDiscuss, long fromQQ,
             string msg,
-            int font);
+            int font) => 0;
 
         /// <summary>
         /// 处理群文件上传事件。
@@ -106,7 +112,7 @@
         /// <param name="fromQQ">上传此文件的QQ号码。</param>
         /// <param name="file">上传的文件的信息。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessGroupUpload(int subType, int sendTime, long fromGroup, long fromQQ, string file);
+        public virtual int ProcessGroupUpload(int subType, int sendTime, long fromGroup, long fromQQ, string file) => 0;
 
         /// <summary>
         /// 处理群管理员变动事件。
@@ -116,7 +122,7 @@
         /// <param name="fromGroup">事件来源群号。</param>
         /// <param name="target">被操作的QQ。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessGroupAdminChange(int subType, int sendTime, long fromGroup, long target);
+        public virtual int ProcessGroupAdminChange(int subType, int sendTime, long fromGroup, long target) => 0;
 
         /// <summary>
         /// 处理群成员数量减少事件。
@@ -127,8 +133,8 @@
         /// <param name="fromQQ">事件来源QQ。</param>
         /// <param name="target">被操作的QQ。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessGroupMemberDecrease(int subType, int sendTime, long fromGroup, long fromQQ,
-            long target);
+        public virtual int ProcessGroupMemberDecrease(int subType, int sendTime, long fromGroup, long fromQQ,
+            long target) => 0;
 
         /// <summary>
         /// 处理群成员添加事件。
@@ -139,8 +145,8 @@
         /// <param name="fromQQ">事件来源QQ。</param>
         /// <param name="target">被操作的QQ。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessGroupMemberIncrease(int subType, int sendTime, long fromGroup, long fromQQ,
-            long target);
+        public virtual int ProcessGroupMemberIncrease(int subType, int sendTime, long fromGroup, long fromQQ,
+            long target) => 0;
 
         /// <summary>
         /// 处理好友已添加事件。
@@ -149,7 +155,7 @@
         /// <param name="sendTime">事件发生时间的时间戳。</param>
         /// <param name="fromQQ">事件来源QQ。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessFriendsAdded(int subType, int sendTime, long fromQQ);
+        public virtual int ProcessFriendsAdded(int subType, int sendTime, long fromQQ) => 0;
 
         /// <summary>
         /// 处理好友添加请求。
@@ -160,7 +166,7 @@
         /// <param name="msg">附言内容。</param>
         /// <param name="font">消息所使用字体。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessAddFriendRequest(int subType, int sendTime, long fromQQ, string msg, int font);
+        public virtual int ProcessAddFriendRequest(int subType, int sendTime, long fromQQ, string msg, int font) => 0;
 
         /// <summary>
         /// 处理加群请求。
@@ -172,7 +178,7 @@
         /// <param name="msg">附言内容。</param>
         /// <param name="responseMark">用于处理请求的标识。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        public abstract int ProcessJoinGroupRequest(int subType, int sendTime, long fromGroup, long fromQQ, string msg,
-            string responseMark);
+        public virtual int ProcessJoinGroupRequest(int subType, int sendTime, long fromGroup, long fromQQ, string msg,
+            string responseMark) => 0;
     }
 }

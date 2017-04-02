@@ -13,13 +13,13 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <PlatformTarget>x86</PlatformTarget>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
     <DllExportNamespace>Newbe.CQP.Framework</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
     <DllExportGenExpLib>false</DllExportGenExpLib>
-    <DllExportOurILAsm>true</DllExportOurILAsm>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <DllExportOurILAsm>false</DllExportOurILAsm>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -39,8 +39,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DllExport, Version=1.5.2.30304, Culture=neutral, PublicKeyToken=8337224c9ad9e356, processorArchitecture=MSIL">
-      <HintPath>packages\DllExport.1.5.2\lib\net20\DllExport.dll</HintPath>
+    <Reference Include="DllExport, Version=1.5.1.35977, Culture=neutral, PublicKeyToken=8337224c9ad9e356, processorArchitecture=MSIL">
+      <HintPath>packages\DllExport.1.5.1\lib\net20\DllExport.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="LiteDB, Version=3.1.0.0, Culture=neutral, PublicKeyToken=4ee40123013c9f27, processorArchitecture=MSIL">
@@ -83,7 +83,6 @@
     <Content Include="ILMergeOrder.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="packages/DllExport.1.5.2/tools/net.r_eg.DllExport.targets" Condition="Exists('packages/DllExport.1.5.2/tools/net.r_eg.DllExport.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
@@ -92,4 +91,5 @@
     <Error Condition="!Exists('packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', 'packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets'))" />
   </Target>
   <Import Project="packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets" Condition="Exists('packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets')" />
+  <Import Project="packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets" Condition="Exists('packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets')" />
 </Project>
