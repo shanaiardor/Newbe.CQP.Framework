@@ -10,13 +10,13 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 此群成员在其个人资料上所填写的年龄。
         /// </summary>
-        /// <returns><see cref="Integer"/> </returns>
+        /// <returns> </returns>
         public int Age { get; set; }
 
         /// <summary>
         /// 此群成员在其个人资料上所填写的区域。
         /// </summary>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public string Area { get; set; }
 
         /// <summary>
@@ -34,19 +34,19 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 此群成员在其个人资料上所填写的性别。
         /// </summary>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public string Gender { get; set; }
 
         /// <summary>
         /// 此群成员的群名片。
         /// </summary>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public string InGroupName { get; set; }
 
         /// <summary>
         /// 此群成员的头衔。
         /// </summary>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public string Title { get; set; }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 头衔过期时间。
         /// </summary>
-        /// <returns><see cref="Integer"/> </returns>
+        /// <returns> </returns>
         public int TitleExpirationTime { get; set; }
 
         /// <summary>
@@ -82,13 +82,13 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 此群成员的群内等级。
         /// </summary>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public string Level { get; set; }
 
         /// <summary>
         /// 此群成员的昵称。
         /// </summary>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public string NickName { get; set; }
 
         /// <summary>

@@ -12,7 +12,7 @@ namespace Newbe.CQP.Framework
         /// 获取酷Q匿名代码。
         /// </summary>
         /// <param name="ignore">是否要强制匿名。</param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string Anonymous(bool ignore)
         {
             return "[CQ:anonymous" + (ignore ? "ignore=true" : "" + "]");
@@ -22,7 +22,7 @@ namespace Newbe.CQP.Framework
         /// 获取用于@指定QQ的代码。
         /// </summary>
         /// <param name="number">要被@的QQ的号码。如果为@全体成员，则为-1。</param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string At(long number)
         {
             return "[CQ:at,qq=" + (number == -1 ? "all" : number + "]");
@@ -32,7 +32,7 @@ namespace Newbe.CQP.Framework
         /// 获取用于发送特定Emoji表情的代码。
         /// </summary>
         /// <param name="id">Emoji表情ID。 </param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string Emoji(int id)
         {
             return "[CQ:emoji,id=" + id + "]";
@@ -42,7 +42,7 @@ namespace Newbe.CQP.Framework
         /// 获取用于发送表情的代码。
         /// </summary>
         /// <param name="id">表情ID。 </param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string Expression(int id)
         {
             return "[CQ:face,id=" + id + "]";
@@ -52,7 +52,7 @@ namespace Newbe.CQP.Framework
         /// 获取用于发送自定义图片的代码。
         /// </summary>
         /// <param name="imagePath">自定义图片路径。</param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string Image(string imagePath)
         {
             return "[CQ:image,file=" + imagePath + "]";
@@ -62,7 +62,7 @@ namespace Newbe.CQP.Framework
         /// 获取用于分享音乐的代码。
         /// </summary>
         /// <param name="id">音乐索引。</param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string ShareMusic(int id)
         {
             return "[CQ:music,id" + id.ToString() + "]";
@@ -76,7 +76,7 @@ namespace Newbe.CQP.Framework
         ///' <param name="title">分享标题，建议12字以内。</param>
         ///' <param name="content">分享内容，建议30字以内。</param>
         ///' <param name="imageUrl">分享链接的图片的Url。</param>
-        ///' <returns><see cref="String"/> </returns>
+        ///' <returns></returns>
         //Public Shared Function ShareMusic(descriptionUrl As String, audioUrl As String, title As String, content As String, imageUrl As String) As String
         //    Return "[CQ:music,type=custom,url=" + descriptionUrl + ",audio=" + audioUrl + ",title=" + title + ",content=" + content + ",image=" + imageUrl + "]"
         //End Function
@@ -88,7 +88,7 @@ namespace Newbe.CQP.Framework
         /// <param name="title">分享标题，建议12字以内。</param>
         /// <param name="content">分享内容，建议30字以内。</param>
         /// <param name="imageUri">分享链接的图片的Url。</param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string ShareMusic(Uri descriptionUri, Uri audioUri, string title, string content, Uri imageUri)
         {
             if (descriptionUri == null || audioUri == null || imageUri == null)
@@ -104,7 +104,7 @@ namespace Newbe.CQP.Framework
         /// 获取用于分享本地音频文件的代码。
         /// </summary>
         /// <param name="recordFileName">音频文件的完整路径。</param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string ShareRecord(string recordFileName)
         {
             return "[CQ:record,file=" + recordFileName + "]";
@@ -113,7 +113,7 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 获取戳了一下（即窗口抖动）的代码。
         /// </summary>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string Shake()
         {
             return "[CQ:shake]";
@@ -126,7 +126,7 @@ namespace Newbe.CQP.Framework
         ///' <param name="title">分享内容标题，建议12字以内。</param>
         ///' <param name="content">分享内容，建议30字以内。</param>
         ///' <param name="imageUrl">分享内容的附带图片。</param>
-        ///' <returns><see cref="String"/> </returns>
+        ///' <returns></returns>
         //Public Shared Function ShareLink(url As String, title As String, content As String, imageUrl As String) As String
         //    Return "[CQ:share,url=" + url + ",title=" + title + ",content=" + content + ",image=" + imageUrl + "]"
         //End Function
@@ -137,7 +137,7 @@ namespace Newbe.CQP.Framework
         /// <param name="title">分享内容标题，建议12字以内。</param>
         /// <param name="content">分享内容，建议30字以内。</param>
         /// <param name="imageUri">分享内容的附带图片。</param>
-        /// <returns><see cref="String"/> </returns>
+        /// <returns></returns>
         public static string ShareLink(Uri uri, string title, string content, Uri imageUri)
         {
             if (uri == null || imageUri == null)

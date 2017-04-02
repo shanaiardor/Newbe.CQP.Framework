@@ -1,82 +1,45 @@
-﻿using System;
-using System.IO;
-using LiteDB;
-using Newbe.CQP.Framework.Logging;
-
-namespace Newbe.CQP.Framework
+﻿namespace Newbe.CQP.Framework
 {
     /// <summary>
-    /// 酷Q.NET测试插件。
+    /// 暴露非托管代码的api集合
     /// </summary>
-    public sealed class TestPlugin
+    public sealed class PluginApiExporter
     {
-        //Api版本号，若酷Q官方SDK没有更新此版本号，请勿改动此值
-        private const int ApiVersion = 9;
-        //AppID
-        private const string AppId = "newbe.cqp.framework";
-        private static ILog Logger = LogProvider.For<TestPlugin>();
-
-        private TestPlugin()
-        {
-            PluginHelper.CQ.SendPrivateMessage(472158246, 44.ToString());
-            Logger.Debug("heheda");
-        }
-
         /// <summary>
         /// 此函数会在插件被开启时发生。
         /// </summary>
-        /// <returns><see cref="Integer"/> 返回处理过程是否成功的值。</returns>
+        /// <returns>返回处理过程是否成功的值。</returns>
         [DllExport("_eventEnable")]
-        public static int Enabled()
-        {
-            return 0;
-        }
+        public static int Enabled() => PluginInstanceManager.GetInstance().Enabled();
 
         /// <summary>
         /// 此函数会在插件被禁用时发生。
         /// </summary>
-        /// <returns><see cref="Integer"/> 返回处理过程是否成功的值。</returns>
+        /// <returns>返回处理过程是否成功的值。</returns>
         [DllExport("_eventDisable")]
-        public static int Disabled()
-        {
-            return 0;
-        }
+        public static int Disabled() => PluginInstanceManager.GetInstance().Disabled();
 
         /// <summary>
         /// 向酷Q提供插件信息。
         /// </summary>
-        /// <returns><see cref="String"/> 一个固定格式字符串。</returns>
+        /// <returns>一个固定格式字符串。</returns>
         [DllExport("AppInfo")]
-        public static string AppInfo()
-        {
-            //请勿修改此函数
-            return (ApiVersion.ToString() + "," + AppId);
-        }
+        public static string AppInfo() => PluginInstanceManager.GetInstance().AppInfo();
 
         /// <summary>
         /// 获取此插件的AuthCode。
         /// </summary>
         /// <param name="authcode">由酷Q提供的AuthCode。</param>
-        /// <returns><see cref="Integer"/> </returns>
+        /// <returns></returns>
         [DllExport("Initialize", System.Runtime.InteropServices.CallingConvention.StdCall)]
-        public static int Initialize(int authcode)
-        {
-            //请勿更改此函数
-            PluginHelper.CQ.SetAuthCode(authcode);
-            return 0;
-            //固定返回0
-        }
+        public static int Initialize(int authcode) => PluginInstanceManager.GetInstance().Initialize(authcode);
 
         /// <summary>
         /// 此函数会在酷Q退出时被调用。
         /// </summary>
-        /// <returns><see cref="Integer"/> </returns>
+        /// <returns></returns>
         [DllExport("_eventExit", System.Runtime.InteropServices.CallingConvention.StdCall)]
-        public static int CoolQExited()
-        {
-            return 0;
-            //固定返回0
-        }
+        public static int CoolQExited() => PluginInstanceManager.GetInstance().CoolQExited();
 
 
         /// <summary>
@@ -87,31 +50,11 @@ namespace Newbe.CQP.Framework
         /// <param name="fromQQ">发送此消息的QQ号码。</param>
         /// <param name="msg">消息的内容。</param>
         /// <param name="font">消息所使用的字体。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventPrivateMsg", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessPrivateMessage(int subType, int sendTime, long fromQQ, string msg, int font)
-        {
-            //0为忽略 1为拦截
-            PluginHelper.CQ.SendPrivateMessage(fromQQ, 1.ToString());
-            LogProvider.For<TestPlugin>().Debug(1.ToString);
-            var myClass = new MyClass {Name = "hehe"};
-            using (var fileStream = File.Create("1.txt"))
-            {
-                using (var db = new LiteDatabase("my.db"))
-                {
-                    db.GetCollection<MyClass>("hehe").Insert(myClass);
-                }
-            }
-            PluginHelper.CQ.SendPrivateMessage(fromQQ, 3.ToString());
-            LogProvider.For<TestPlugin>().Debug(3.ToString());
+            => PluginInstanceManager.GetInstance().ProcessPrivateMessage(subType, sendTime, fromQQ, msg, font);
 
-            return 0;
-        }
-
-        private class MyClass
-        {
-            public string Name { get; set; }
-        }
 
         /// <summary>
         /// 处理群聊消息。
@@ -123,16 +66,14 @@ namespace Newbe.CQP.Framework
         /// <param name="fromAnonymous">发送此消息的匿名用户。</param>
         /// <param name="msg">消息内容。</param>
         /// <param name="font">消息所使用字体。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventGroupMsg", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessGroupMessage(int subType, int sendTime, long fromGroup, long fromQQ,
             string fromAnonymous,
             string msg, int font)
-        {
-            //0为忽略 1为拦截
-
-            return 0;
-        }
+            => PluginInstanceManager.GetInstance().ProcessGroupMessage(subType, sendTime, fromGroup, fromQQ,
+                fromAnonymous,
+                msg, font);
 
         /// <summary>
         /// 处理讨论组消息。
@@ -143,16 +84,13 @@ namespace Newbe.CQP.Framework
         /// <param name="fromQQ">发送此消息的QQ号码。</param>
         /// <param name="msg">消息内容。</param>
         /// <param name="font">消息所使用字体。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventDiscussMsg", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessDiscussGroupMessage(int subType, int sendTime, long fromDiscuss, long fromQQ,
             string msg,
             int font)
-        {
-            //0为忽略 1为拦截
-
-            return 0;
-        }
+            => PluginInstanceManager.GetInstance().ProcessDiscussGroupMessage(subType, sendTime, fromDiscuss, fromQQ,
+                msg, font);
 
         /// <summary>
         /// 处理群文件上传事件。
@@ -162,12 +100,10 @@ namespace Newbe.CQP.Framework
         /// <param name="fromGroup">事件来源群号。</param>
         /// <param name="fromQQ">上传此文件的QQ号码。</param>
         /// <param name="file">上传的文件的信息。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventGroupUpload", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessGroupUpload(int subType, int sendTime, long fromGroup, long fromQQ, string file)
-        {
-            return 0;
-        }
+            => PluginInstanceManager.GetInstance().ProcessGroupUpload(subType, sendTime, fromGroup, fromQQ, file);
 
         /// <summary>
         /// 处理群管理员变动事件。
@@ -176,12 +112,10 @@ namespace Newbe.CQP.Framework
         /// <param name="sendTime">事件发生时间的时间戳。</param>
         /// <param name="fromGroup">事件来源群号。</param>
         /// <param name="target">被操作的QQ。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventSystem_GroupAdmin", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessGroupAdminChange(int subType, int sendTime, long fromGroup, long target)
-        {
-            return 0;
-        }
+            => PluginInstanceManager.GetInstance().ProcessGroupAdminChange(subType, sendTime, fromGroup, target);
 
         /// <summary>
         /// 处理群成员数量减少事件。
@@ -191,12 +125,12 @@ namespace Newbe.CQP.Framework
         /// <param name="fromGroup">事件来源群号。</param>
         /// <param name="fromQQ">事件来源QQ。</param>
         /// <param name="target">被操作的QQ。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventSystem_GroupMemberDecrease", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessGroupMemberDecrease(int subType, int sendTime, long fromGroup, long fromQQ, long target)
-        {
-            return 0;
-        }
+            =>
+                PluginInstanceManager.GetInstance()
+                    .ProcessGroupMemberDecrease(subType, sendTime, fromGroup, fromQQ, target);
 
         /// <summary>
         /// 处理群成员添加事件。
@@ -206,12 +140,13 @@ namespace Newbe.CQP.Framework
         /// <param name="fromGroup">事件来源群号。</param>
         /// <param name="fromQQ">事件来源QQ。</param>
         /// <param name="target">被操作的QQ。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventSystem_GroupMemberIncrease", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessGroupMemberIncrease(int subType, int sendTime, long fromGroup, long fromQQ, long target)
-        {
-            return 0;
-        }
+            =>
+                PluginInstanceManager.GetInstance()
+                    .ProcessGroupMemberIncrease(subType, sendTime, fromGroup, fromQQ, target);
+
 
         /// <summary>
         /// 处理好友已添加事件。
@@ -219,12 +154,12 @@ namespace Newbe.CQP.Framework
         /// <param name="subType">事件类型。固定为1。</param>
         /// <param name="sendTime">事件发生时间的时间戳。</param>
         /// <param name="fromQQ">事件来源QQ。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventFriend_Add", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessFriendsAdded(int subType, int sendTime, long fromQQ)
-        {
-            return 0;
-        }
+            =>
+                PluginInstanceManager.GetInstance()
+                    .ProcessFriendsAdded(subType, sendTime, fromQQ);
 
         /// <summary>
         /// 处理好友添加请求。
@@ -234,12 +169,12 @@ namespace Newbe.CQP.Framework
         /// <param name="fromQQ">事件来源QQ。</param>
         /// <param name="msg">附言内容。</param>
         /// <param name="font">消息所使用字体。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventRequest_AddFriend", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessAddFriendRequest(int subType, int sendTime, long fromQQ, string msg, int font)
-        {
-            return 0;
-        }
+            =>
+                PluginInstanceManager.GetInstance()
+                    .ProcessAddFriendRequest(subType, sendTime, fromQQ, msg, font);
 
         /// <summary>
         /// 处理加群请求。
@@ -250,13 +185,14 @@ namespace Newbe.CQP.Framework
         /// <param name="fromQQ">发送此请求的QQ号码。</param>
         /// <param name="msg">附言内容。</param>
         /// <param name="responseMark">用于处理请求的标识。</param>
-        /// <returns><see cref="Integer"/> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
+        /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventRequest_AddGroup", System.Runtime.InteropServices.CallingConvention.StdCall)]
         public static int ProcessJoinGroupRequest(int subType, int sendTime, long fromGroup, long fromQQ, string msg,
             string responseMark)
-        {
-            return 0;
-        }
+            =>
+                PluginInstanceManager.GetInstance()
+                    .ProcessJoinGroupRequest(subType, sendTime, fromGroup, fromQQ, msg,
+                        responseMark);
 
         //菜单示例
         //假设菜单中在json文件中的设置如下
