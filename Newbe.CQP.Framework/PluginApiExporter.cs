@@ -1,4 +1,6 @@
-﻿namespace Newbe.CQP.Framework
+﻿using Newbe.CQP.Plugins.TestPlugin;
+
+namespace Newbe.CQP.Framework
 {
     /// <summary>
     /// 暴露非托管代码的api集合
