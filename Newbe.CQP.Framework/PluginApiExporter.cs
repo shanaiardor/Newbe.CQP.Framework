@@ -1,4 +1,4 @@
-﻿using Newbe.CQP.Plugins.TestPlugin;
+﻿using System.Runtime.InteropServices;
 
 namespace Newbe.CQP.Framework
 {

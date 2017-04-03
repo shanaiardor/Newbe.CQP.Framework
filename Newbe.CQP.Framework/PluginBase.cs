@@ -1,6 +1,6 @@
 ﻿namespace Newbe.CQP.Framework
 {
-    public abstract class PluginBase
+    public abstract class PluginBase : IPluginBase
     {
         protected CoolQApi CoolQApi;
 

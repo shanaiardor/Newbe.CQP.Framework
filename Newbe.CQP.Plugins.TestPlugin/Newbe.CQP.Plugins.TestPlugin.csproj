@@ -14,7 +14,7 @@
     <FileAlignment>512</FileAlignment>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
-    <DllExportNamespace>Newbe.CQP.Plugins.TestPlugin</DllExportNamespace>
+    <DllExportNamespace>System.Runtime.InteropServices</DllExportNamespace>
     <DllExportDDNSCecil>true</DllExportDDNSCecil>
     <DllExportSkipOnAnyCpu>false</DllExportSkipOnAnyCpu>
     <DllExportOrdinalsBase>1</DllExportOrdinalsBase>
@@ -40,8 +40,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DllExport, Version=1.5.2.30304, Culture=neutral, PublicKeyToken=8337224c9ad9e356, processorArchitecture=MSIL">
-      <HintPath>..\packages\DllExport.1.5.2\lib\net20\DllExport.dll</HintPath>
+    <Reference Include="DllExport, Version=1.5.1.35977, Culture=neutral, PublicKeyToken=8337224c9ad9e356, processorArchitecture=MSIL">
+      <HintPath>..\packages\DllExport.1.5.1\lib\net20\DllExport.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System" />
@@ -70,11 +70,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="ILMerge.props" />
+    <None Include="ILMerge.props">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="../packages/DllExport.1.5.2/tools/net.r_eg.DllExport.targets" Condition="Exists('../packages/DllExport.1.5.2/tools/net.r_eg.DllExport.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>此项目引用这台计算机上缺少的 NuGet 程序包。使用 NuGet 程序包还原可下载这些程序包。有关详细信息，请参阅 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
@@ -83,4 +84,5 @@
     <Error Condition="!Exists('..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets'))" />
   </Target>
   <Import Project="..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets" Condition="Exists('..\packages\MSBuild.ILMerge.Task.1.0.5\build\MSBuild.ILMerge.Task.targets')" />
+  <Import Project="../packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets" Condition="Exists('../packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets')" />
 </Project>
