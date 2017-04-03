@@ -2,11 +2,11 @@
 {
     public abstract class PluginBase : IPluginBase
     {
-        protected CoolQApi CoolQApi;
+        protected readonly ICoolQApi CoolQApi;
 
-        protected PluginBase()
+        protected PluginBase(ICoolQApi coolQApi)
         {
-            CoolQApi = PluginHelper.CQ;
+            CoolQApi = coolQApi;
         }
 
         /// <summary>
@@ -45,7 +45,7 @@
         public int Initialize(int authcode)
         {
             //请勿更改此函数
-            PluginHelper.CQ.SetAuthCode(authcode);
+            CoolQApi.SetAuthCode(authcode);
             return 0;
             //固定返回0
         }

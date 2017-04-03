@@ -9,7 +9,7 @@ namespace Newbe.CQP.Framework
     /// <summary>
     ///     向酷Q.NET插件提供酷Q Api
     /// </summary>
-    public class CoolQApi
+    public class CoolQApi : ICoolQApi
     {
         private int _cqauthcode;
 
