@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Newbe.CQP.Framework</id>
+    <version>1.0.0-alpha01</version>
+    <title>Newbe.CQP.Framework</title>
+    <authors>Newbe</authors>
+    <owners>Newbe</owners>
+    <licenseUrl>http://git.oschina.net/yks/Newbe.CQP.Framework/raw/dev/LICENSE.md</licenseUrl>
+    <projectUrl>http://git.oschina.net/yks/Newbe.CQP.Framework</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>酷Q(CoolQ) .net SDK from Newbe</description>
+    <summary>酷Q(CoolQ) .net SDK from Newbe</summary>
+    <releaseNotes></releaseNotes>
+    <copyright>Copyright Newbe 2017</copyright>
+  </metadata>
+  <files>
+      <file src="Newbe.CQP.Framework.json" target="Newbe.CQP.Framework.json" />
+    </files>
+</package>
