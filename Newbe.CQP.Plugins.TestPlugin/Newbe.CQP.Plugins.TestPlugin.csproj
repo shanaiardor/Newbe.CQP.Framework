@@ -47,8 +47,8 @@
       <HintPath>..\packages\DllExport.1.5.1\lib\net20\DllExport.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Newbe.CQP.Framework, Version=1.0.0.18053, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newbe.CQP.Framework.1.0.0-alpha01\lib\net452\Newbe.CQP.Framework.dll</HintPath>
+    <Reference Include="Newbe.CQP.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newbe.CQP.Framework.1.0.0-alpha02\lib\net452\Newbe.CQP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -76,6 +76,7 @@
     <None Include="ILMerge.props">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Newbe.CQP.Framework.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

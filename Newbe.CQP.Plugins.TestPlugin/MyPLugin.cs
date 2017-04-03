@@ -9,6 +9,10 @@ namespace Newbe.CQP.Plugins.TestPlugin
 {
     public class MyPlugin : PluginBase
     {
+        public MyPlugin(ICoolQApi coolQApi) : base(coolQApi)
+        {
+        }
+
         public override string AppId => "Newbe.CQP.Plugins.TestPlugin";
 
         public override int ProcessPrivateMessage(int subType, int sendTime, long fromQQ, string msg, int font)

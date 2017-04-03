@@ -9,6 +9,10 @@ namespace Newbe.CQP.Plugins.ProxyClient
 {
     public class PluginMain : PluginBase
     {
+        public PluginMain(ICoolQApi coolQApi) : base(coolQApi)
+        {
+        }
+
         public override string AppId => "Newbe.CQP.Plugins.ProxyClient";
 
         public override int ProcessPrivateMessage(int subType, int sendTime, long fromQQ, string msg, int font)
