@@ -24,9 +24,9 @@
     // see http://stackoverflow.com/questions/64602/what-are-differences-between-assemblyversion-assemblyfileversion-and-assemblyin
     // see http://www.codeproject.com/Articles/328977/The-Right-Way-to-Version-Your-Assemblies
 
-    string nugetVersion = "1.0.0-alpha01";
-    string assemblyVersion = nugetVersion + ".*";
-    string assemblyFileVersion = nugetVersion;
+    string assemblyVersion = "1.0.0";
+    string nugetVersion = assemblyVersion + "-alpha01";
+    string assemblyFileVersion = assemblyVersion;
 
     string assemblyGuid = "88c3bb70-a79a-4e90-b994-a96766c2a4ac";
 
