@@ -76,7 +76,6 @@
     <None Include="ILMerge.props">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Newbe.CQP.Framework.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

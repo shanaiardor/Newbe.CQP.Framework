@@ -68,7 +68,6 @@
     <Content Include="Newbe.CQP.Plugins.ProxyClient.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <None Include="Newbe.CQP.Framework.json" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
