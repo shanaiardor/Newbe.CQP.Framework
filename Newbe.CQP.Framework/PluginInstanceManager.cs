@@ -26,5 +26,10 @@ namespace Newbe.CQP.Framework
         {
             return Instance;
         }
+
+        public static IContainer GetContainer()
+        {
+            return Container;
+        }
     }
 }
