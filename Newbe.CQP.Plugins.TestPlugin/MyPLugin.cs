@@ -13,7 +13,7 @@ namespace Newbe.CQP.Plugins.TestPlugin
 
         public override int ProcessPrivateMessage(int subType, int sendTime, long fromQQ, string msg, int font)
         {
-            CoolQApi.SendPrivateMessage(fromQQ,msg);
+            CoolQApi.SendPrivateMessage(fromQQ, msg);
             return base.ProcessPrivateMessage(subType, sendTime, fromQQ, msg, font);
         }
     }
