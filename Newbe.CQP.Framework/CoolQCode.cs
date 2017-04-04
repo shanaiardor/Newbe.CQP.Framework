@@ -5,9 +5,8 @@ namespace Newbe.CQP.Framework
     /// <summary>
     /// 表示酷Q代码合集。
     /// </summary>
-    public abstract class CoolQCode
+    public static class CoolQCode
     {
-        //CQCode_Anonymous(Boolean) : String
         /// <summary>
         /// 获取酷Q匿名代码。
         /// </summary>
@@ -68,18 +67,7 @@ namespace Newbe.CQP.Framework
             return "[CQ:music,id" + id.ToString() + "]";
         }
 
-        ///' <summary>
-        ///' 获取用于分享自定义音乐的代码。
-        ///' </summary>
-        ///' <param name="descriptionUrl">描述自定义音乐的Url。</param>
-        ///' <param name="audioUrl">音乐文件的Url</param>
-        ///' <param name="title">分享标题，建议12字以内。</param>
-        ///' <param name="content">分享内容，建议30字以内。</param>
-        ///' <param name="imageUrl">分享链接的图片的Url。</param>
-        ///' <returns></returns>
-        //Public Shared Function ShareMusic(descriptionUrl As String, audioUrl As String, title As String, content As String, imageUrl As String) As String
-        //    Return "[CQ:music,type=custom,url=" + descriptionUrl + ",audio=" + audioUrl + ",title=" + title + ",content=" + content + ",image=" + imageUrl + "]"
-        //End Function
+
         /// <summary>
         /// 获取用于分享自定义音乐的代码。
         /// </summary>
@@ -119,17 +107,7 @@ namespace Newbe.CQP.Framework
             return "[CQ:shake]";
         }
 
-        ///' <summary>
-        ///' 获取分享自定义链接的代码。
-        ///' </summary>
-        ///' <param name="url">自定义链接的Url。</param>
-        ///' <param name="title">分享内容标题，建议12字以内。</param>
-        ///' <param name="content">分享内容，建议30字以内。</param>
-        ///' <param name="imageUrl">分享内容的附带图片。</param>
-        ///' <returns></returns>
-        //Public Shared Function ShareLink(url As String, title As String, content As String, imageUrl As String) As String
-        //    Return "[CQ:share,url=" + url + ",title=" + title + ",content=" + content + ",image=" + imageUrl + "]"
-        //End Function
+
         /// <summary>
         /// 获取分享自定义链接的代码。
         /// </summary>

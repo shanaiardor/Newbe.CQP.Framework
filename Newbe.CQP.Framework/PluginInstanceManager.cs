@@ -4,6 +4,9 @@ using Newbe.CQP.Framework.Logging;
 
 namespace Newbe.CQP.Framework
 {
+    /// <summary>
+    /// 插件实例管理器
+    /// </summary>
     public static class PluginInstanceManager
     {
         private static IPluginBase Instance { get; }
@@ -22,11 +25,15 @@ namespace Newbe.CQP.Framework
             logger.Info($"插件加载完毕，选取{Instance.GetType().FullName}为插件实现类");
         }
 
-        public static IPluginBase GetInstance()
+        internal static IPluginBase GetInstance()
         {
             return Instance;
         }
 
+        /// <summary>
+        /// 获取IOC容器
+        /// </summary>
+        /// <returns></returns>
         public static IContainer GetContainer()
         {
             return Container;
