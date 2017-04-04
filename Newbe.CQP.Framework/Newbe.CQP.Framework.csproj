@@ -83,6 +83,7 @@
     <Content Include="Newbe.CQP.Framework.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include="tools\Install.ps1" />
     <None Include="T4NuSpec.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4NuSpec.cs</LastGenOutput>

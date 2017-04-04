@@ -17,7 +17,7 @@
     string nugetLicenseUrl = "http://git.oschina.net/yks/Newbe.CQP.Framework/raw/dev/LICENSE.md";
     string nugetProjectUrl = "http://git.oschina.net/yks/Newbe.CQP.Framework";
     string nugetRequireLicenseAcceptance = "false";
-    string nugetReleaseInfo = "支持构造函数注入ICoolApi，支持获取Container";
+    string nugetReleaseInfo = "1.0.0，支持酷Q全面API，支持依赖注入";
     string nugetSummary = projectDescription;
 
     // ============ Version
@@ -25,7 +25,7 @@
     // see http://www.codeproject.com/Articles/328977/The-Right-Way-to-Version-Your-Assemblies
 
     string assemblyVersion = "1.0.0";
-    string nugetVersion = assemblyVersion + "-alpha02";
+    string nugetVersion = assemblyVersion + "-alpha03";
     string assemblyFileVersion = assemblyVersion;
 
     string assemblyGuid = "88c3bb70-a79a-4e90-b994-a96766c2a4ac";
@@ -33,6 +33,7 @@
     // ============ NuSpec Contents
     IList<KeyValuePair<String,String>> nugetFiles = new List<KeyValuePair<String,String>>();
 	nugetFiles.Add(new KeyValuePair<string,string>("Newbe.CQP.Framework.json","Newbe.CQP.Framework.json"));
+	nugetFiles.Add(new KeyValuePair<string,string>(@"tools\*.ps1","tools"));
 
     // ============ Assembly info
     string assemblyTitle = projectTitle;
