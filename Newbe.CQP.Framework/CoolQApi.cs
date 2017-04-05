@@ -9,7 +9,6 @@ namespace Newbe.CQP.Framework
     {
         private int _cqauthcode;
 
-
         /// <inheritdoc />
         public string Cookies => NativeMethods.CQ_getCookies(_cqauthcode);
 
@@ -21,7 +20,9 @@ namespace Newbe.CQP.Framework
             {
                 var sc = new SecureString();
                 foreach (var c in NativeMethods.CQ_getCookies(_cqauthcode))
+                {
                     sc.AppendChar(c);
+                }
                 sc.MakeReadOnly();
                 return sc;
             }
@@ -200,11 +201,11 @@ namespace Newbe.CQP.Framework
                 info.CanModifyInGroupName = BitConverter.ToInt32(modifyCardBytes, 0) == 1;
                 return info;
             }
-            catch (Exception e)
+            catch (Exception)
             {
-                Log(CoolQLogLevel.Error, e.Message, "获取群成员信息");
+                //无法获取到群成员信息，直接返回null
+                return null;
             }
-            throw new Exception();
         }
 
 

@@ -108,12 +108,12 @@ namespace Newbe.CQP.Framework
         void EnableAnonymousChat(long groupId);
 
         /// <summary>
-        ///     获取缓存的群成员信息。
+        ///     获取缓存的群成员信息。若无法获取信息则返回null
         /// </summary>
         /// <param name="groupId">要获取信息的群成员的所在群。</param>
         /// <param name="qq">要获取信息的群成员QQ。</param>
         /// <returns>
-        ///     <see cref="GroupMemberInfo" />
+        ///     <see cref="GroupMemberInfo" />若无法获取信息则返回null
         /// </returns>
         /// <remarks>此函数采用Flexlive的处理方法。</remarks>
         GroupMemberInfo GetGroupMemberInfo(long groupId, long qq);

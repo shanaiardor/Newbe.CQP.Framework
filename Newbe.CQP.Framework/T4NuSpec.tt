@@ -25,7 +25,7 @@
     // see http://www.codeproject.com/Articles/328977/The-Right-Way-to-Version-Your-Assemblies
 
     string assemblyVersion = "1.0.0";
-    string nugetVersion = assemblyVersion + "-alpha03";
+    string nugetVersion = assemblyVersion + "-alpha04";
     string assemblyFileVersion = assemblyVersion;
 
     string assemblyGuid = "88c3bb70-a79a-4e90-b994-a96766c2a4ac";
@@ -110,6 +110,7 @@ using System.Runtime.InteropServices;
     <description><#= projectDescription #></description>
     <summary><#= nugetSummary #></summary>
     <releaseNotes><#= nugetReleaseInfo #></releaseNotes>
+	<tags>Newbe,cqp,cqa,framework,sdk,二次开发,酷Q,CoolQ</tags>
     <copyright><#= assemblyCopyright #></copyright>
   </metadata>
   <files>
