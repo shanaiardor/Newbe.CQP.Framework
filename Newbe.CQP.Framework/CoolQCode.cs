@@ -14,7 +14,7 @@ namespace Newbe.CQP.Framework
         /// <returns></returns>
         public static string Anonymous(bool ignore)
         {
-            return "[CQ:anonymous" + (ignore ? "ignore=true" : "" + "]");
+            return $"[CQ:anonymous{(ignore ? "ignore=true" : "")}]";
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Newbe.CQP.Framework
         /// <returns></returns>
         public static string At(long number)
         {
-            return "[CQ:at,qq=" + (number == -1 ? "all" : number + "]");
+            return $"[CQ:at,qq={(number == -1 ? "all" : number.ToString())}]";
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Newbe.CQP.Framework
         /// <returns></returns>
         public static string ShareMusic(int id)
         {
-            return "[CQ:music,id" + id.ToString() + "]";
+            return "[CQ:music,id" + id + "]";
         }
 
 
