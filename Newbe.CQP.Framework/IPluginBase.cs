@@ -121,7 +121,8 @@
         /// <param name="msg">消息内容。</param>
         /// <param name="font">消息所使用字体。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
-        int ProcessGroupMessage(int subType, int sendTime, long fromGroup, long fromQq, string fromAnonymous, string msg,
+        int ProcessGroupMessage(int subType, int sendTime, long fromGroup, long fromQq, string fromAnonymous,
+            string msg,
             int font);
 
         /// <summary>
@@ -159,5 +160,63 @@
         /// <param name="font">消息所使用的字体。</param>
         /// <returns> 是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         int ProcessPrivateMessage(int subType, int sendTime, long fromQq, string msg, int font);
+
+        #region 菜单
+
+        /// <summary>
+        /// 菜单A
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickA();
+
+        /// <summary>
+        /// 菜单B
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickB();
+
+        /// <summary>
+        /// 菜单C
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickC();
+
+        /// <summary>
+        /// 菜单D
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickD();
+
+        /// <summary>
+        /// 菜单E
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickE();
+
+        /// <summary>
+        /// 菜单F
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickF();
+
+        /// <summary>
+        /// 菜单G
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickG();
+
+        /// <summary>
+        /// 菜单H
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickH();
+
+        /// <summary>
+        /// 菜单I
+        /// </summary>
+        /// <returns></returns>
+        int ProcessMenuClickI();
+
+        #endregion
     }
 }

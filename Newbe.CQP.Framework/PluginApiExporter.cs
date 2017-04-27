@@ -73,9 +73,10 @@ namespace Newbe.CQP.Framework
         public static int ProcessGroupMessage(int subType, int sendTime, long fromGroup, long fromQQ,
             string fromAnonymous,
             string msg, int font)
-            => PluginInstanceManager.GetInstance().ProcessGroupMessage(subType, sendTime, fromGroup, fromQQ,
-                fromAnonymous,
-                msg, font);
+            => PluginInstanceManager.GetInstance()
+                .ProcessGroupMessage(subType, sendTime, fromGroup, fromQQ,
+                    fromAnonymous,
+                    msg, font);
 
         /// <summary>
         /// 处理讨论组消息。
@@ -91,8 +92,9 @@ namespace Newbe.CQP.Framework
         public static int ProcessDiscussGroupMessage(int subType, int sendTime, long fromDiscuss, long fromQQ,
             string msg,
             int font)
-            => PluginInstanceManager.GetInstance().ProcessDiscussGroupMessage(subType, sendTime, fromDiscuss, fromQQ,
-                msg, font);
+            => PluginInstanceManager.GetInstance()
+                .ProcessDiscussGroupMessage(subType, sendTime, fromDiscuss, fromQQ,
+                    msg, font);
 
         /// <summary>
         /// 处理群文件上传事件。
@@ -129,7 +131,8 @@ namespace Newbe.CQP.Framework
         /// <param name="target">被操作的QQ。</param>
         /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventSystem_GroupMemberDecrease", System.Runtime.InteropServices.CallingConvention.StdCall)]
-        public static int ProcessGroupMemberDecrease(int subType, int sendTime, long fromGroup, long fromQQ, long target)
+        public static int ProcessGroupMemberDecrease(int subType, int sendTime, long fromGroup, long fromQQ,
+            long target)
             =>
                 PluginInstanceManager.GetInstance()
                     .ProcessGroupMemberDecrease(subType, sendTime, fromGroup, fromQQ, target);
@@ -144,7 +147,8 @@ namespace Newbe.CQP.Framework
         /// <param name="target">被操作的QQ。</param>
         /// <returns>是否拦截消息的值，0为忽略消息，1为拦截消息。</returns>
         [DllExport("_eventSystem_GroupMemberIncrease", System.Runtime.InteropServices.CallingConvention.StdCall)]
-        public static int ProcessGroupMemberIncrease(int subType, int sendTime, long fromGroup, long fromQQ, long target)
+        public static int ProcessGroupMemberIncrease(int subType, int sendTime, long fromGroup, long fromQQ,
+            long target)
             =>
                 PluginInstanceManager.GetInstance()
                     .ProcessGroupMemberIncrease(subType, sendTime, fromGroup, fromQQ, target);
@@ -196,16 +200,71 @@ namespace Newbe.CQP.Framework
                     .ProcessJoinGroupRequest(subType, sendTime, fromGroup, fromQQ, msg,
                         responseMark);
 
-        //菜单示例
-        //假设菜单中在json文件中的设置如下
-        //{
-        //        "name""设置A",			//菜单名称
-        //       "function":"_menuA"		//菜单对应函数
-        //}
-        //则
-        //<DllExport("菜单对应函数")>
-        //Public Shared Function <执行过程名称>() As Integer
-        //    Return 0 '固定返回0
-        //End Function
+        #region 菜单
+
+        /// <summary>
+        /// 菜单A
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuA", CallingConvention.StdCall)]
+        public static int ProcessMenuClickA() => PluginInstanceManager.GetInstance().ProcessMenuClickA();
+
+        /// <summary>
+        /// 菜单B
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuB", CallingConvention.StdCall)]
+        public static int ProcessMenuClickB() => PluginInstanceManager.GetInstance().ProcessMenuClickB();
+
+        /// <summary>
+        /// 菜单C
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuC", CallingConvention.StdCall)]
+        public static int ProcessMenuClickC() => PluginInstanceManager.GetInstance().ProcessMenuClickC();
+
+        /// <summary>
+        /// 菜单D
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuD", CallingConvention.StdCall)]
+        public static int ProcessMenuClickD() => PluginInstanceManager.GetInstance().ProcessMenuClickD();
+
+        /// <summary>
+        /// 菜单E
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuE", CallingConvention.StdCall)]
+        public static int ProcessMenuClickE() => PluginInstanceManager.GetInstance().ProcessMenuClickE();
+
+        /// <summary>
+        /// 菜单F
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuF", CallingConvention.StdCall)]
+        public static int ProcessMenuClickF() => PluginInstanceManager.GetInstance().ProcessMenuClickF();
+
+        /// <summary>
+        /// 菜单G
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuG", CallingConvention.StdCall)]
+        public static int ProcessMenuClickG() => PluginInstanceManager.GetInstance().ProcessMenuClickG();
+
+        /// <summary>
+        /// 菜单H
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuH", CallingConvention.StdCall)]
+        public static int ProcessMenuClickH() => PluginInstanceManager.GetInstance().ProcessMenuClickH();
+
+        /// <summary>
+        /// 菜单I
+        /// </summary>
+        /// <returns></returns>
+        [DllExport("_menuI", CallingConvention.StdCall)]
+        public static int ProcessMenuClickI() => PluginInstanceManager.GetInstance().ProcessMenuClickI();
+
+        #endregion
     }
 }

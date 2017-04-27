@@ -48,7 +48,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Newbe.CQP.Framework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newbe.CQP.Framework.1.0.0-alpha05\lib\net452\Newbe.CQP.Framework.dll</HintPath>
+      <HintPath>..\packages\Newbe.CQP.Framework.1.0.0-alpha06\lib\net452\Newbe.CQP.Framework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
