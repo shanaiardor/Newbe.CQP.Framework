@@ -52,7 +52,7 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 此群成员所在群号。
         /// </summary>
-        /// <returns><see cref="Long"/> </returns>
+        /// <returns> </returns>
         public long GroupId { get; set; }
 
         /// <summary>
@@ -70,13 +70,13 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 此群成员的入群时间。
         /// </summary>
-        /// <returns><see cref="Date"/> </returns>
+        /// <returns> </returns>
         public System.DateTime JoinTime { get; set; }
 
         /// <summary>
         /// 此群成员最后发言日期。
         /// </summary>
-        /// <returns><see cref="Date"/> </returns>
+        /// <returns></returns>
         public System.DateTime LastSpeakingTime { get; set; }
 
         /// <summary>
@@ -94,7 +94,7 @@ namespace Newbe.CQP.Framework
         /// <summary>
         /// 此群成员的QQ号码。
         /// </summary>
-        /// <returns><see cref="Long"/> </returns>
+        /// <returns></returns>
         public long Number { get; set; }
     }
 }

@@ -35,6 +35,9 @@
     <DocumentationFile>bin\Release\Newbe.CQP.Framework.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -66,16 +69,16 @@
     <Content Include="Newbe.CQP.Framework.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Include=".t4\MultipleOutput.ttinclude" />
+    <None Include="packages.config" />
     <None Include="tools\Install.ps1" />
     <None Include="T4NuSpec.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>T4NuSpec.cs</LastGenOutput>
     </None>
-    <None Include=".t4\MultipleOutput.ttinclude" />
     <None Include="Newbe.CQP.Framework.nuspec">
       <DependentUpon>T4NuSpec.tt</DependentUpon>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

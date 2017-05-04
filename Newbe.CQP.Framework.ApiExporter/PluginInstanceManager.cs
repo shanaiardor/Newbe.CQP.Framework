@@ -2,7 +2,7 @@
 using System.IO;
 using System.Reflection;
 using Autofac;
-using Newbe.CQP.Framework.ApiExporter.Logging;
+using Newbe.CQP.Framework.Logging;
 
 namespace Newbe.CQP.Framework
 {
@@ -25,7 +25,8 @@ namespace Newbe.CQP.Framework
                 {
                     AppDomain.CurrentDomain.Load(AssemblyName.GetAssemblyName(file));
                 }
-                builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies()).AsImplementedInterfaces()
+                builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies())
+                    .AsImplementedInterfaces()
                     .AsSelf();
                 //CoolApi全局唯一
                 builder.Register(x => new CoolQApi()).AsImplementedInterfaces().SingleInstance();
