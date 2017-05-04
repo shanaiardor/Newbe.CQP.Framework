@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
     <Compile Include="CoolQApi.cs" />
+    <Compile Include="NewbePluginDirectoryNotFoundException.cs" />
     <Compile Include="PluginApiExporter.cs" />
     <Compile Include="PluginInstanceManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -76,4 +77,9 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="../packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets" Condition="Exists('../packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>xcopy $(TargetDir)x86\$(TargetFileName) $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForPlugin\ /Y 
+xcopy $(TargetDir)Autofac.dll $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForMain\ /Y 
+xcopy $(TargetDir)Newbe.CQP.Framework.dll $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForMain\ /Y</PostBuildEvent>
+  </PropertyGroup>
 </Project>

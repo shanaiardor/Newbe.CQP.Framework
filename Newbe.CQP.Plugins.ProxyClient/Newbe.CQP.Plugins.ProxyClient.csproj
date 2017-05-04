@@ -36,6 +36,9 @@
     <Reference Include="Autofac, Version=4.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
       <HintPath>..\packages\Autofac.4.5.0\lib\net45\Autofac.dll</HintPath>
     </Reference>
+    <Reference Include="Newbe.CQP.Framework, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newbe.CQP.Framework.1.1.0-alpha01\lib\net452\Newbe.CQP.Framework.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,18 +53,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Newbe.CQP.Plugins.ProxyClient.json">
+    <Content Include="Newbe.CQP.Framework\ForMain\Autofac.dll" />
+    <Content Include="Newbe.CQP.Framework\ForMain\Newbe.CQP.Framework.dll" />
+    <Content Include="Newbe.CQP.Framework\ForMain\readme.txt" />
+    <Content Include="Newbe.CQP.Framework\ForPlugin\Newbe.CQP.Plugins.ProxyClient.dll" />
+    <Content Include="Newbe.CQP.Framework\ForPlugin\readme.txt" />
+    <Content Include="Newbe.CQP.Framework\ForPlugin\Newbe.CQP.Plugins.ProxyClient.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Newbe.CQP.Framework\Newbe.CQP.Framework.csproj">
-      <Project>{a841b2c0-54de-4ac3-8242-97c7685a16a8}</Project>
-      <Name>Newbe.CQP.Framework</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
