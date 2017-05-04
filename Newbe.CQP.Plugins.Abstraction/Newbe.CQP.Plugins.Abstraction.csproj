@@ -4,26 +4,22 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{A841B2C0-54DE-4AC3-8242-97C7685A16A8}</ProjectGuid>
+    <ProjectGuid>{1A1595E3-01B8-483D-97FC-642C6C2FB51B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Newbe.CQP.Framework</RootNamespace>
-    <AssemblyName>Newbe.CQP.Framework</AssemblyName>
+    <AssemblyName>Newbe.CQP.Plugins.Abstraction</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>TRACE;DEBUG</DefineConstants>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <DocumentationFile>bin\Debug\Newbe.CQP.Framework.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -32,7 +28,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\Newbe.CQP.Framework.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -45,43 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyInfo.cs">
-      <DependentUpon>T4NuSpec.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CoolQAddGroupRequestType.cs" />
-    <Compile Include="CoolQCode.cs" />
-    <Compile Include="CoolQLogLevel.cs" />
-    <Compile Include="CoolQRequestResult.cs" />
-    <Compile Include="GroupMemberInfo.cs" />
-    <Compile Include="ICoolQApi.cs" />
-    <Compile Include="IPluginBase.cs" />
-    <Compile Include="PluginBase.cs" />
-    <Compile Include="T4NuSpec.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>T4NuSpec.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Newbe.CQP.Framework.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <None Include="tools\Install.ps1" />
-    <None Include="T4NuSpec.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>T4NuSpec.cs</LastGenOutput>
-    </None>
-    <None Include=".t4\MultipleOutput.ttinclude" />
-    <None Include="Newbe.CQP.Framework.nuspec">
-      <DependentUpon>T4NuSpec.tt</DependentUpon>
-    </None>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
