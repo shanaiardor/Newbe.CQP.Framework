@@ -48,29 +48,37 @@ namespace Newbe.CQP.Framework.PluginLoader
                 {
                     CodeBase = pluginEntryPointDllFullFilename,
                 });
+                foreach (var assembly in AppDomain.CurrentDomain.GetAssemblies())
+                {
+                    Debug($"当前已加载程序集:{assembly.FullName}");
+                }
+                Debug($"程序集加载完毕,开始构建Container");
+                var superBuilder = new ContainerBuilder();
+                superBuilder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies()).AsImplementedInterfaces()
+                    .AsSelf();
+                var superContainer = superBuilder.Build();
+                var subBuilderRegisters = superContainer.Resolve<IAutofacContainerBuilder[]>().ToArray();
+                var builder = new ContainerBuilder();
+                builder.Register(x => new CoolQApi()).AsImplementedInterfaces().SingleInstance();
+                builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies()).AsImplementedInterfaces()
+                    .AsSelf();
+                foreach (var autofacContainerBuilder in subBuilderRegisters)
+                {
+                    autofacContainerBuilder.Register(builder);
+                }
+                var container = builder.Build();
+                Debug($"Container构建完毕，尝试获取{nameof(IPluginBase)}实现类");
+                var impls = container.Resolve<IEnumerable<IPluginBase>>().ToArray();
+                Debug($"实现类一共{impls.Length}个");
+                _pluginBase = impls.First(x => !(x is CrossAppDomainPluginLoader));
+                Debug($"获取到了{_pluginBase.GetType().Name}作为{nameof(IPluginBase)}的实现类，插件加载完毕");
+                return true;
             }
             catch (Exception ex)
             {
-                Type type = ex.GetType();
-                if (type == typeof(FileNotFoundException) || type == typeof(FileLoadException) ||
-                    type == typeof(SecurityException) || type == typeof(BadImageFormatException))
-                {
-                    Message = ex.Message;
-                    return false;
-                }
-                throw;
+                Message = ex.Message;
+                return false;
             }
-            Debug($"程序集加载完毕,开始构建Container");
-            var builder = new ContainerBuilder();
-            builder.Register(x => new CoolQApi()).AsImplementedInterfaces().SingleInstance();
-            builder.RegisterAssemblyTypes(AppDomain.CurrentDomain.GetAssemblies()).AsImplementedInterfaces().AsSelf();
-            var container = builder.Build();
-            Debug($"Container构建完毕，尝试获取{nameof(IPluginBase)}实现类");
-            var impls = container.Resolve<IEnumerable<IPluginBase>>().ToArray();
-            Debug($"实现类一共{impls.Length}个");
-            _pluginBase = impls.First(x => !(x is CrossAppDomainPluginLoader));
-            Debug($"获取到了{_pluginBase.GetType().Name}作为{nameof(IPluginBase)}的实现类，插件加载完毕");
-            return true;
         }
 
         string IPluginBase.ApiVersion => _pluginBase.ApiVersion;

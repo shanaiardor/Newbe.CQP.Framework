@@ -64,6 +64,7 @@ namespace Newbe.CQP.Framework
         {
             //请勿更改此函数
             CoolQApi.SetAuthCode(authcode);
+            NewbeInstanceManager.CoolQApi = CoolQApi;
             return 0;
             //固定返回0
         }

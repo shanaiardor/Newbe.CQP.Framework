@@ -25,7 +25,7 @@
     // see http://www.codeproject.com/Articles/328977/The-Right-Way-to-Version-Your-Assemblies
 
     string assemblyVersion = "1.1.0";
-    string nugetVersion = assemblyVersion + "-alpha01";
+    string nugetVersion = assemblyVersion + "-alpha02";
     string assemblyFileVersion = assemblyVersion;
 
     string assemblyGuid = "88c3bb70-a79a-4e90-b994-a96766c2a4ac";
@@ -92,6 +92,8 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("<#= assemblyVersion #>")]
 [assembly: AssemblyFileVersion("<#= assemblyFileVersion #>")]
+[assembly:InternalsVisibleTo("Newbe.CQP.Framework.PluginLoader")]
+
 
 <# manager.EndBlock(); #>
 

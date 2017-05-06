@@ -50,7 +50,7 @@ namespace Newbe.CQP.Framework
                     $"透明代理创建完毕，类型为{loader.GetType().FullName}，将开始调用{nameof(CrossAppDomainPluginLoader.LoadPlugin)}方法");
                 if (!loader.LoadPlugin(pluginInfo.PluginEntryPointDllFullFilename))
                 {
-                    throw new PluginLoadException(pluginInfo.Name);
+                    throw new PluginLoadException(pluginInfo.Name, loader.Message);
                 }
                 Instances.Add(pluginInfo.Name, loader);
                 IPluginBase plugin = loader;

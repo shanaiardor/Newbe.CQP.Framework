@@ -5,13 +5,15 @@ VisualStudioVersion = 15.0.26403.7
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Framework", "Newbe.CQP.Framework\Newbe.CQP.Framework.csproj", "{A841B2C0-54DE-4AC3-8242-97C7685A16A8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Plugins.TestPlugin", "Newbe.CQP.Plugins.TestPlugin\Newbe.CQP.Plugins.TestPlugin.csproj", "{B049201F-FC24-44A5-BB19-34394F244DC2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Plugins.ProxyClient", "Newbe.CQP.Plugins.ProxyClient\Newbe.CQP.Plugins.ProxyClient.csproj", "{707A55A7-080D-4321-BEB6-7CFABD7059F4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Framework.ApiExporter", "Newbe.CQP.Framework.ApiExporter\Newbe.CQP.Framework.ApiExporter.csproj", "{1B16A1ED-B49D-4594-A250-269B31730F19}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Framework.PluginLoader", "Newbe.CQP.Framework.PluginLoader\Newbe.CQP.Framework.PluginLoader.csproj", "{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Intergration", "Intergration", "{33128DC9-2853-4B43-983F-FC7D6572A0B0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Plugins.TimedTask", "Newbe.CQP.Plugins.TimedTask\Newbe.CQP.Plugins.TimedTask.csproj", "{5CE6A4C8-2C86-4431-8A8F-CD561B34BDD9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Plugins.Parrot", "Newbe.CQP.Plugins.Parrot\Newbe.CQP.Plugins.Parrot.csproj", "{DDC1B798-542A-4D16-8B9D-DC7A2DA9CB22}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,14 +25,6 @@ Global
 		{A841B2C0-54DE-4AC3-8242-97C7685A16A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A841B2C0-54DE-4AC3-8242-97C7685A16A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A841B2C0-54DE-4AC3-8242-97C7685A16A8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B049201F-FC24-44A5-BB19-34394F244DC2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B049201F-FC24-44A5-BB19-34394F244DC2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B049201F-FC24-44A5-BB19-34394F244DC2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B049201F-FC24-44A5-BB19-34394F244DC2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{707A55A7-080D-4321-BEB6-7CFABD7059F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{707A55A7-080D-4321-BEB6-7CFABD7059F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{707A55A7-080D-4321-BEB6-7CFABD7059F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{707A55A7-080D-4321-BEB6-7CFABD7059F4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B16A1ED-B49D-4594-A250-269B31730F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B16A1ED-B49D-4594-A250-269B31730F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B16A1ED-B49D-4594-A250-269B31730F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -39,8 +33,20 @@ Global
 		{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CE6A4C8-2C86-4431-8A8F-CD561B34BDD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CE6A4C8-2C86-4431-8A8F-CD561B34BDD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CE6A4C8-2C86-4431-8A8F-CD561B34BDD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CE6A4C8-2C86-4431-8A8F-CD561B34BDD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC1B798-542A-4D16-8B9D-DC7A2DA9CB22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC1B798-542A-4D16-8B9D-DC7A2DA9CB22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC1B798-542A-4D16-8B9D-DC7A2DA9CB22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC1B798-542A-4D16-8B9D-DC7A2DA9CB22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5CE6A4C8-2C86-4431-8A8F-CD561B34BDD9} = {33128DC9-2853-4B43-983F-FC7D6572A0B0}
+		{DDC1B798-542A-4D16-8B9D-DC7A2DA9CB22} = {33128DC9-2853-4B43-983F-FC7D6572A0B0}
 	EndGlobalSection
 EndGlobal
