@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>Newbe.CQP.Framework</id>
+    <version>1.1.0-alpha02</version>
+    <title>Newbe.CQP.Framework</title>
+    <authors>Newbe</authors>
+    <owners>Newbe</owners>
+    <licenseUrl>http://git.oschina.net/yks/Newbe.CQP.Framework/raw/dev/LICENSE.md</licenseUrl>
+    <projectUrl>http://git.oschina.net/yks/Newbe.CQP.Framework</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>酷Q(CoolQ) .net SDK from Newbe 帮助文档 http://yks.oschina.io/newbe.cqp.framework/?file=%E9%A6%96%E9%A1%B5</description>
+    <summary>酷Q(CoolQ) .net SDK from Newbe 帮助文档 http://yks.oschina.io/newbe.cqp.framework/?file=%E9%A6%96%E9%A1%B5</summary>
+    <releaseNotes>1.1.0，支持酷Q全面API，支持依赖注入、方便操作，绝对棒！</releaseNotes>
+	<tags>Newbe,cqp,cqa,framework,sdk,二次开发,酷Q,CoolQ</tags>
+    <copyright>Copyright Newbe 2017</copyright>
+  </metadata>
+  <files>
+      <file src="tools\*.ps1" target="tools" />
+      <file src="Newbe.CQP.Framework\**" target="content\Newbe.CQP.Framework\" />
+    </files>
+</package>

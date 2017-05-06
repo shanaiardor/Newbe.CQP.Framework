@@ -259,3 +259,7 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/Newbe.CQP.Framework/Newbe.CQP.Framework/ForPlugin/Newbe.CQP.Framework.ApiExporter.dll
+/Newbe.CQP.Framework/Newbe.CQP.Framework/ForMain/Newbe.CQP.Framework.dll
+/Newbe.CQP.Framework/Newbe.CQP.Framework/ForMain/Autofac.dll
+/Newbe.CQP.Framework/Newbe.CQP.Framework/ForMain/Newbe.CQP.Framework.PluginLoader.dll
