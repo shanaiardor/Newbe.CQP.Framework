@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("Newbe.CQP.Framework.ApiExporter")]
+[assembly: AssemblyTitle("Newbe.CQP.Framework.PluginLoader")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Newbe.CQP.Framework.ApiExporter")]
+[assembly: AssemblyProduct("Newbe.CQP.Framework.PluginLoader")]
 [assembly: AssemblyCopyright("Copyright ©  2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("1b16a1ed-b49d-4594-a250-269b31730f19")]
+[assembly: Guid("b0d86b1f-5bac-49f9-b149-42e6ac89b527")]
 
 // 程序集的版本信息由下列四个值组成: 
 //

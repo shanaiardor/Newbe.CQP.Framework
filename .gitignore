@@ -262,3 +262,4 @@ __pycache__/
 /Newbe.CQP.Framework/Newbe.CQP.Framework/ForPlugin/Newbe.CQP.Framework.ApiExporter.dll
 /Newbe.CQP.Framework/Newbe.CQP.Framework/ForMain/Newbe.CQP.Framework.dll
 /Newbe.CQP.Framework/Newbe.CQP.Framework/ForMain/Autofac.dll
+/Newbe.CQP.Framework/Newbe.CQP.Framework/ForMain/Newbe.CQP.Framework.PluginLoader.dll

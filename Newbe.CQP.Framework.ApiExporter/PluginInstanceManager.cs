@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
-using Autofac;
 using Newbe.CQP.Framework.Logging;
+using Newbe.CQP.Framework.PluginLoader;
 
 namespace Newbe.CQP.Framework
 {
@@ -12,45 +12,61 @@ namespace Newbe.CQP.Framework
     /// </summary>
     public static class PluginInstanceManager
     {
-        private static IDictionary<string, IPluginBase> Instances { get; } = new Dictionary<string, IPluginBase>();
-        private static IContainer Container { get; }
+        private static IDictionary<string, CrossAppDomainPluginLoader> Instances { get; } =
+            new Dictionary<string, CrossAppDomainPluginLoader>();
+
+        private static readonly ILog Logger = LogProvider.GetLogger(typeof(PluginInstanceManager));
+
 
         static PluginInstanceManager()
         {
-            var logger = LogProvider.GetLogger("PluginInstanceManager");
-            logger.Info("开始加载插件");
+            Logger.Info("开始加载插件");
             try
             {
-                logger.Debug("开始构建IOC容器");
-                var builder = new ContainerBuilder();
-                string pluginName = GetPluginName();
-                logger.Debug($"当前插件名称为{pluginName}");
-                var pluginDllDir = Path.Combine("app/../", pluginName);
-                if (!Directory.Exists(pluginDllDir))
+                var pluginInfo = GetPluginInfo();
+                pluginInfo.ValidateFiles();
+                Logger.Debug($"当前插件名称为{pluginInfo.Name}");
+                var appDomainSetup = new AppDomainSetup
                 {
-                    throw new NewbePluginDirectoryNotFoundException(pluginName);
-                }
-                var domainName = $"{pluginName}Domain";
-                logger.Debug($"创建AppDomain{domainName}");
-                foreach (var file in Directory.GetFiles(pluginDllDir, "*.dll"))
+                    DisallowBindingRedirects = false,
+                    ApplicationBase = pluginInfo.PluginEntryPointDllFullFilename
+                };
+                if (File.Exists(pluginInfo.PluginEntryPointConfigFullFilename))
                 {
-                    builder.RegisterAssemblyTypes(Assembly.LoadFile(Path.GetFullPath(file)))
-                        .AsImplementedInterfaces()
-                        .AsSelf();
-                    logger.Debug($"加载{file}到{domainName}");
+                    appDomainSetup.ConfigurationFile = pluginInfo.PluginEntryPointConfigFullFilename;
                 }
-                //CoolApi全局唯一
-                builder.Register(x => new CoolQApi()).AsImplementedInterfaces().SingleInstance();
-                Container = builder.Build();
-                logger.Debug("IOC容器构建完毕");
-                Instances.Add(pluginName, Container.Resolve<IPluginBase>());
+                Logger.Debug($"创建AppDomain进行加载插件:{pluginInfo.Name}");
+                var domain = AppDomain.CreateDomain(pluginInfo.Name, AppDomain.CurrentDomain.Evidence,
+                    appDomainSetup);
+                domain.Load(new AssemblyName
+                {
+                    CodeBase = pluginInfo.PluginEntryPointDllFullFilename,
+                });
+                Logger.Debug("开始创建透明代理");
+                var objectHandle = domain.CreateInstanceFrom("Newbe.CQP.Framework.PluginLoader.dll",
+                    typeof(CrossAppDomainPluginLoader).FullName);
+                var loader = (CrossAppDomainPluginLoader) objectHandle.Unwrap();
+                Logger.Debug(
+                    $"透明代理创建完毕，类型为{loader.GetType().FullName}，将开始调用{nameof(CrossAppDomainPluginLoader.LoadPlugin)}方法");
+                if (!loader.LoadPlugin(pluginInfo.PluginEntryPointDllFullFilename))
+                {
+                    throw new PluginLoadException(pluginInfo.Name);
+                }
+                Instances.Add(pluginInfo.Name, loader);
+                IPluginBase plugin = loader;
+                Logger.Debug($"插件加载完毕:{pluginInfo.Name},AppId:{plugin.AppId},ApiVersion:{plugin.ApiVersion}");
             }
             catch (Exception e)
             {
-                logger.ErrorException(e.Message, e);
+                Logger.ErrorException(e.Message, e);
+                var inner = e.InnerException;
+                while (inner != null)
+                {
+                    Logger.ErrorException(e.Message, e);
+                    inner = inner.InnerException;
+                }
                 throw;
             }
-            logger.Info($"插件加载完毕，选取{Instances.GetType().FullName}为插件实现类");
         }
 
         private static string GetPluginName()
@@ -58,18 +74,35 @@ namespace Newbe.CQP.Framework
             return Path.GetFileNameWithoutExtension(typeof(PluginInstanceManager).Assembly.CodeBase);
         }
 
-        internal static IPluginBase GetInstance()
+
+        private static PluginInfo GetPluginInfo()
         {
-            return Instances[GetPluginName()];
+            var pluginApiExpDll = typeof(PluginInstanceManager).Assembly.CodeBase;
+            var pluginName = Path.GetFileNameWithoutExtension(pluginApiExpDll);
+            var baseDir = AppDomain.CurrentDomain.BaseDirectory;
+            var dllDir = Path.GetFullPath(Path.Combine(baseDir, pluginName));
+            var re = new PluginInfo
+            {
+                Name = pluginName,
+                PluginApiExporterRuntimeFullpath = pluginApiExpDll,
+                PluginEntyPointDirectory = dllDir,
+                PluginEntryPointDllFullFilename = Path.Combine(dllDir, $"{pluginName}.dll"),
+                PluginEntryPointConfigFullFilename = Path.Combine(dllDir, $"{pluginName}.dll.config"),
+            };
+            return re;
         }
 
-        /// <summary>
-        /// 获取IOC容器
-        /// </summary>
-        /// <returns></returns>
-        public static IContainer GetContainer()
+        internal static IPluginBase GetInstance()
         {
-            return Container;
+            try
+            {
+                return Instances[GetPluginName()];
+            }
+            catch (Exception e)
+            {
+                Logger.ErrorException(e.Message, e);
+                throw;
+            }
         }
     }
 }

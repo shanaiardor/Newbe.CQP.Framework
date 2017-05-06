@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Security;
 using System.Text;
 
-namespace Newbe.CQP.Framework
+namespace Newbe.CQP.Framework.PluginLoader
 {
     internal class CoolQApi : ICoolQApi
     {

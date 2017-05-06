@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Plugins.ProxyClie
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Framework.ApiExporter", "Newbe.CQP.Framework.ApiExporter\Newbe.CQP.Framework.ApiExporter.csproj", "{1B16A1ED-B49D-4594-A250-269B31730F19}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Newbe.CQP.Framework.PluginLoader", "Newbe.CQP.Framework.PluginLoader\Newbe.CQP.Framework.PluginLoader.csproj", "{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{1B16A1ED-B49D-4594-A250-269B31730F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B16A1ED-B49D-4594-A250-269B31730F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1B16A1ED-B49D-4594-A250-269B31730F19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B0D86B1F-5BAC-49F9-B149-42E6AC89B527}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

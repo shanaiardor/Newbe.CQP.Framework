@@ -57,10 +57,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Packages\LibLog.4.2\LibLog.cs" />
-    <Compile Include="CoolQApi.cs" />
     <Compile Include="NewbePluginDirectoryNotFoundException.cs" />
     <Compile Include="PluginApiExporter.cs" />
+    <Compile Include="PluginInfo.cs" />
     <Compile Include="PluginInstanceManager.cs" />
+    <Compile Include="PluginLoadException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +71,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Newbe.CQP.Framework.PluginLoader\Newbe.CQP.Framework.PluginLoader.csproj">
+      <Project>{b0d86b1f-5bac-49f9-b149-42e6ac89b527}</Project>
+      <Name>Newbe.CQP.Framework.PluginLoader</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Newbe.CQP.Framework\Newbe.CQP.Framework.csproj">
       <Project>{a841b2c0-54de-4ac3-8242-97c7685a16a8}</Project>
       <Name>Newbe.CQP.Framework</Name>
@@ -79,7 +84,14 @@
   <Import Project="../packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets" Condition="Exists('../packages/DllExport.1.5.1/tools/net.r_eg.DllExport.targets')" />
   <PropertyGroup>
     <PostBuildEvent>xcopy $(TargetDir)x86\$(TargetFileName) $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForPlugin\ /Y 
-xcopy $(TargetDir)Autofac.dll $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForMain\ /Y 
+
+del $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForMain\*.dll /f /-q
+xcopy $(TargetDir)Autofac.dll $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForMain\ /Y
+xcopy $(TargetDir)Newbe.CQP.Framework.PluginLoader.dll $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForMain\ /Y
 xcopy $(TargetDir)Newbe.CQP.Framework.dll $(SolutionDir)Newbe.CQP.Framework\Newbe.CQP.Framework\ForMain\ /Y</PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
   </PropertyGroup>
 </Project>
